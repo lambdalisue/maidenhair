@@ -55,13 +55,12 @@ def relative(dataset, ori=0, column=1, fail_silently=True):
         orimin = np.min(ori)
         orimax = np.max(ori)
         oridiff = orimax - orimin
+        # baseline
+        for data in dataset:
+            data[column] -= orimin
         # convert
         for data in dataset:
             data[column] /= oridiff / 100.0
-        # baseline
-        baseline = ori[0]
-        for data in dataset:
-            data[column] -= baseline
         return dataset
     except IndexError, e:
         if fail_silently:
