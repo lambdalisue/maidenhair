@@ -8,7 +8,7 @@ A plugin based data load library
 (C) 2013 hashnote.net, Alisue
 """
 name = 'maidenhair'
-version = '0.1.0'
+version = '0.1.1'
 author = 'Alisue'
 author_email = 'lambdalisue@hashnote.net'
 
