@@ -1,14 +1,16 @@
-# maidenhair
+maidenhair
+=============
 A plugin based data load and manimupulate library.
 
-## Usage
+Usage
+---------
 Assume that there are three kinds of samples and each samples have 5 indipendent
 experimental results.
-All filenames are written as the following format
+All filenames are written as the following format::
 
     sample-type<type number>.<experiment number>.txt
 
-And files are saved in `data` directory like
+And files are saved in `data` directory like::
 
     +- data
         |
@@ -28,7 +30,7 @@ And files are saved in `data` directory like
         +- sample-type3.004.txt
         +- sample-type3.005.txt
 
-Then, the code for plotting the data will be
+Then, the code for plotting the data will be::
 
     >>> import matplotlib.pyplot as plt
     >>> import maidenhair
