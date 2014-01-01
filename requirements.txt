@@ -1,5 +1,4 @@
 setuptools
 natsort
 bunch
-numpy
 numpydoc
