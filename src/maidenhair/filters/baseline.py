@@ -49,7 +49,7 @@ def baseline(dataset, column=1, fn=None, fail_silently=True):
     """
     try:
         if fn is None:
-            fn = lambda *args: average(args[column][0])
+            fn = lambda *args: args[column][0]
         for i, data in enumerate(dataset):
             _baseline = fn(*data)
             dataset[i][column] -= _baseline

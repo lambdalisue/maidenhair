@@ -49,18 +49,28 @@ def relative(dataset, ori=0, column=1, fail_silently=True):
         if isinstance(ori, int):
             # relative from the [ori]th array
             ori = dataset[ori][column]
-        # calculate min/max difference
-        if ori.ndim > 1 and len(ori[0]) > 1:
-            ori = np.average(ori, axis=1)
-        orimin = np.min(ori)
-        orimax = np.max(ori)
-        oridiff = orimax - orimin
-        # baseline
-        for data in dataset:
-            data[column] -= orimin
-        # convert
-        for data in dataset:
-            data[column] /= oridiff / 100.0
+        if isinstance(ori[0], (list, tuple, np.ndarray)):
+            # calculate min/max difference
+            for i in range(len(ori[0])):
+                orimin = np.min(ori[:,i])
+                orimax = np.max(ori[:,i])
+                oridiff = orimax - orimin
+                # baseline
+                for data in dataset:
+                    data[column][:,i] -= orimin
+                # convert
+                for data in dataset:
+                    data[column][:,i] /= oridiff / 100.0
+        else:
+            orimin = np.min(ori)
+            orimax = np.max(ori)
+            oridiff = orimax - orimin
+            # baseline
+            for data in dataset:
+                data[column] -= orimin
+            # convert
+            for data in dataset:
+                data[column] /= oridiff / 100.0
         return dataset
     except IndexError, e:
         if fail_silently:

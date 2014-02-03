@@ -198,6 +198,10 @@ def unite_dataset(dataset, basecolumn=0):
         # select basecolumn
         bnx = ndata[basecolumn]
         bpx = pdata[basecolumn]
+        if bnx is not None and bnx.ndim >= 2:
+            bnx = bnx[:,-1]
+        if bpx is not None and bpx.ndim >= 2:
+            bpx = bpx[:,-1]
         # calculate min and max of this and final data
         if bnx is not None and len(bnx) != len(bpx):
             # the number of samples is different, so regulation is required
@@ -210,7 +214,9 @@ def unite_dataset(dataset, basecolumn=0):
             nindex = None
             pindex = None
         for i, (nx, px) in enumerate(itertools.izip(ndata, pdata)):
-            if nindex: nx = nx[nindex]
-            if pindex: px = px[pindex]
+            if nindex:
+                nx = nx[nindex]
+            if pindex:
+                px = px[pindex]
             ndata[i] = px if nx is None else np.c_[nx, px]
     return [ndata]

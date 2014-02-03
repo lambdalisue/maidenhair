@@ -23,7 +23,8 @@ _loader = None
 
 def load(pathname, using=None, unite=False, basecolumn=0,
          relative=False, baseline=None,
-         parser=None, loader=None, **kwargs):
+         parser=None, loader=None,
+         with_filename=False, recursive=False, natsort=True, **kwargs):
     """
     Load data from file matched with given glob pattern.
 
@@ -61,6 +62,14 @@ def load(pathname, using=None, unite=False, basecolumn=0,
         An instance or registered name of loader class.
         If it is not specified, default loader specified with
         :func:`maidenhair.functions.set_default_loader` will be used instead.
+    with_filename : boolean, optional
+        If it is `True`, returning dataset will contain filename in the
+        first column.
+        It is cannot be used with :attr:`unite = True`
+    recursive : boolean, optional
+        Recursively find pattern in the directory
+    natsort : boolean
+        Naturally sort found files.
 
     Returns
     -------
@@ -71,45 +80,46 @@ def load(pathname, using=None, unite=False, basecolumn=0,
     --------
     Assume that there are five independent experimental data for three types
     of samples, namely there are fifteen data.
-    Each data file would have two direction (X and Y) and 500 data points.
+    Each data file would have two direction (X and Y) and 100 data points.
     Its filenames would be formatted as
     `<type number>.<experimental number>.txt`
-    and save in `data` directory.
+    and save in `tests/fixtures` directory.
 
     Then the loading code will be
 
     >>> import maidenhair
     >>> dataset = []
-    >>> dataset += maidenhair.load('data/1.*.txt',
+    >>> dataset += maidenhair.load('tests/fixtures/1.*.txt',
     ...                             unite=True, using=(0, 1))
-    >>> dataset += maidenhair.load('data/2.*.txt',
+    >>> dataset += maidenhair.load('tests/fixtures/2.*.txt',
     ...                             unite=True, using=(0, 1))
-    >>> dataset += maidenhair.load('data/3.*.txt',
+    >>> dataset += maidenhair.load('tests/fixtures/3.*.txt',
     ...                             unite=True, using=(0, 1))
     >>> len(dataset)            # number of samples
     3
-    >>> len(dataset[0])         # number of data points
-    500
-    >>> len(dataset[0][0])      # number of direction (X and Y)
+    >>> len(dataset[0])         # number of axis (X and Y)
     2
+    >>> len(dataset[0][0])      # number of data points
+    100
     >>> len(dataset[0][0][0])   # number of columns
     5
 
     Without using `unite=True`, the dataset will be
 
+    >>> import numpy as np
     >>> import maidenhair
     >>> dataset = []
-    >>> dataset += maidenhair.load('data/1.*.txt', using=(0, 1))
-    >>> dataset += maidenhair.load('data/2.*.txt', using=(0, 1))
-    >>> dataset += maidenhair.load('data/3.*.txt', using=(0, 1))
+    >>> dataset += maidenhair.load('tests/fixtures/1.*.txt', using=(0, 1))
+    >>> dataset += maidenhair.load('tests/fixtures/2.*.txt', using=(0, 1))
+    >>> dataset += maidenhair.load('tests/fixtures/3.*.txt', using=(0, 1))
     >>> len(dataset)            # number of samples
     15
-    >>> len(dataset[0])         # number of data points
-    500
-    >>> len(dataset[0][0])      # number of direction (X and Y)
+    >>> len(dataset[0])         # number of axis (X and Y)
     2
-    >>> len(dataset[0][0][0])   # number of columns
-    1
+    >>> len(dataset[0][0])      # number of data points
+    100
+    >>> isinstance(dataset[0][0][0], np.float64)
+    True
 
     """
     parser = parser or get_default_parser()
@@ -127,7 +137,7 @@ def load(pathname, using=None, unite=False, basecolumn=0,
         from maidenhair.filters import relative
         dataset = relative(dataset)
     if baseline is not None:
-        for i, data in dataset:
+        for i, data in enumerate(dataset):
             dataset[i] = baseline(data)
     return dataset
 
@@ -214,3 +224,6 @@ def set_default_loader(loader):
         loader = loader()
     global _loader
     _loader = loader
+
+if __name__ == '__main__':
+    import doctest; doctest.testmod()

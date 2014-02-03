@@ -23,11 +23,11 @@ def average(x):
     Examples
     --------
     >>> a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    >>> average(a)
-    array([2, 5, 8])
+    >>> np.array_equal(average(a), [2, 5, 8])
+    True
     >>> a = np.array([1, 2, 3])
-    >>> average(a)
-    array([1, 2, 3])
+    >>> np.array_equal(average(a), [1, 2, 3])
+    True
 
     """
     if x.ndim > 1 and len(x[0]) > 1:
@@ -52,11 +52,11 @@ def mean(x):
     Examples
     --------
     >>> a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    >>> mean(a)
-    array([2, 5, 8])
+    >>> np.array_equal(mean(a), [2, 5, 8])
+    True
     >>> a = np.array([1, 2, 3])
-    >>> mean(a)
-    array([1, 2, 3])
+    >>> np.array_equal(mean(a), [1, 2, 3])
+    True
 
     """
     if x.ndim > 1 and len(x[0]) > 1:
@@ -81,11 +81,11 @@ def median(x):
     Examples
     --------
     >>> a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    >>> mean(a)
-    array([2, 5, 8])
+    >>> np.array_equal(median(a), [2, 5, 8])
+    True
     >>> a = np.array([1, 2, 3])
-    >>> median(a)
-    array([1, 2, 3])
+    >>> np.array_equal(median(a), [1, 2, 3])
+    True
 
     """
     if x.ndim > 1 and len(x[0]) > 1:
@@ -106,8 +106,21 @@ def variance(x):
     ndarray
         A 1 x n numpy array instance of column variance
 
+    Examples
+    --------
+    >>> a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    >>> np.testing.assert_array_almost_equal(
+    ...     variance(a),
+    ...     [0.666666, 0.666666, 0.666666])
+    >>> a = np.array([1, 2, 3])
+    >>> np.testing.assert_array_almost_equal(
+    ...     variance(a),
+    ...     0.666666)
+
     """
-    return np.var(x, axis=1)
+    if x.ndim > 1 and len(x[0]) > 1:
+        return np.var(x, axis=1)
+    return np.var(x)
 
 def standard_deviation(x):
     """
@@ -123,8 +136,21 @@ def standard_deviation(x):
     ndarray
         A 1 x n numpy array instance of column standard deviation
 
+    Examples
+    --------
+    >>> a = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    >>> np.testing.assert_array_almost_equal(
+    ...     standard_deviation(a),
+    ...     [0.816496, 0.816496, 0.816496])
+    >>> a = np.array([1, 2, 3])
+    >>> np.testing.assert_array_almost_equal(
+    ...     standard_deviation(a),
+    ...     0.816496)
+
     """
-    return np.std(x, axis=1)
+    if x.ndim > 1 and len(x[0]) > 1:
+        return np.std(x, axis=1)
+    return np.std(x)
 
 def confidential_interval(x, alpha=0.98):
     """
@@ -208,3 +234,6 @@ def simple_moving_average(x, n=10):
         x = np.average(x, axis=1)
     a = np.ones(n) / float(n)
     return np.convolve(x, a, 'valid')
+
+if __name__ == '__main__':
+    import doctest; doctest.testmod()
