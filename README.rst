@@ -1,6 +1,43 @@
 maidenhair
 =============
-A plugin based data load and manimupulate library.
+.. image:: https://secure.travis-ci.org/lambdalisue/maidenhair.png?branch=master
+    :target: http://travis-ci.org/lambdalisue/maidenhair
+    :alt: Build status
+
+.. image:: https://coveralls.io/repos/lambdalisue/maidenhair/badge.png?branch=master
+    :target: https://coveralls.io/r/lambdalisue/maidenhair/
+    :alt: Coverage
+
+.. image:: https://pypip.in/d/maidenhair/badge.png
+    :target: https://pypi.python.org/pypi/maidenhair/
+    :alt: Downloads
+
+.. image:: https://pypip.in/v/maidenhair/badge.png
+    :target: https://pypi.python.org/pypi/maidenhair/
+    :alt: Latest version
+
+.. image:: https://pypip.in/wheel/maidenhair/badge.png
+    :target: https://pypi.python.org/pypi/maidenhair/
+    :alt: Wheel Status
+
+.. image:: https://pypip.in/egg/maidenhair/badge.png
+    :target: https://pypi.python.org/pypi/maidenhair/
+    :alt: Egg Status
+
+.. image:: https://pypip.in/license/maidenhair/badge.png
+    :target: https://pypi.python.org/pypi/maidenhair/
+    :alt: License
+
+A plugin based data load and manimupulation library.
+
+Installation
+------------
+Use pip_ like::
+
+    $ pip install maidenhair
+
+.. _pip:  https://pypi.python.org/pypi/pip
+
 
 Usage
 ---------
