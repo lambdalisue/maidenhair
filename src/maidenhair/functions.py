@@ -132,6 +132,9 @@ def load(pathname, using=None, unite=False, basecolumn=0,
         dataset += loader.glob(_pathname,
                 using=using, parser=parser,
                 unite=unite, basecolumn=basecolumn,
+                with_filename=with_filename,
+                recursive=recursive,
+                natsort=natsort,
                 **kwargs)
     if relative:
         from maidenhair.filters import relative
