@@ -49,9 +49,9 @@ def baseline(dataset, column=1, fn=None, fail_silently=True):
     """
     try:
         if fn is None:
-            fn = lambda *args: args[column][0]
+            fn = lambda columns, column: columns[column][0]
         for i, data in enumerate(dataset):
-            _baseline = fn(*data)
+            _baseline = fn(data, column=column)
             dataset[i][column] -= _baseline
         return dataset
     except IndexError, e:
