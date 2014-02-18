@@ -1,6 +1,7 @@
 natsort
 bunch
 app_version
+ordereddict
 numpy
 tox
 nose
