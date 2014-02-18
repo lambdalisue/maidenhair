@@ -9,6 +9,14 @@ maidenhair Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`compat` Module
+--------------------
+
+.. automodule:: maidenhair.compat
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`functions` Module
 -----------------------
 
@@ -22,6 +30,7 @@ Subpackages
 
 .. toctree::
 
+    maidenhair.classification
     maidenhair.filters
     maidenhair.loaders
     maidenhair.parsers
