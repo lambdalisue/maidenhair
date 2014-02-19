@@ -36,7 +36,7 @@ def find_peakset(dataset, basecolumn=-1, method='', where=None):
         # find peak index
         index = getattr(np, method, np.argmax)(base)
         # create peakset
-        for a, axis in enumerate(data[1:]):
+        for a, axis in enumerate(data):
             if len(peakset) <= a:
                 peakset.append([])
             peakset[a].append(axis[index])
