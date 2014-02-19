@@ -63,10 +63,9 @@ def test_find_peakset_method():
 def test_find_peakset_where():
     dataset = create_test_dataset()
     where = lambda data: data[2] < 6
-    # where=None
     peakset = find_peakset(dataset, where=where)
     np.testing.assert_array_equal(peakset, [
-        [0, 0, 0, 0],
-        [1, 2, 2, 4],
-        [3, 6, 6, 9],
+        [0, 4, 6, 0],
+        [1, 2, 2, 12],
+        [3, 4, 4, 3],
     ])

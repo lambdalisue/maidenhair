@@ -27,18 +27,22 @@ def find_peakset(dataset, basecolumn=-1, method='', where=None):
         A list of peaks of each axis (list)
     """
     peakset = []
+    where_i = None
     for data in dataset:
         base = data[basecolumn]
         base = maidenhair.statistics.average(base)
         # limit data points
         if where:
-            base = base[np.where(where(data))]
+            where_i = np.where(where(data))
+            base = base[where_i]
         # find peak index
         index = getattr(np, method, np.argmax)(base)
         # create peakset
         for a, axis in enumerate(data):
             if len(peakset) <= a:
                 peakset.append([])
+            if where_i:
+                axis = axis[where_i]
             peakset[a].append(axis[index])
     peakset = np.array(peakset)
     return peakset
