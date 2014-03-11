@@ -33,7 +33,8 @@ def find_peakset(dataset, basecolumn=-1, method='', where=None):
         base = maidenhair.statistics.average(base)
         # limit data points
         if where:
-            where_i = np.where(where(data))
+            adata = [maidenhair.statistics.average(x) for x in data]
+            where_i = np.where(where(adata))
             base = base[where_i]
         # find peak index
         index = getattr(np, method, np.argmax)(base)
