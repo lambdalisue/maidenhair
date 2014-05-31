@@ -3,7 +3,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = 'maidenhair'
-VERSION = '0.3.3'
+VERSION = '0.3.4'
 
 def read(filename):
     import os
