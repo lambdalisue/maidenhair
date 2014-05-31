@@ -3,7 +3,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = 'maidenhair'
-VERSION = '0.3.4'
+VERSION = '0.3.5'
 
 def read(filename):
     import os
@@ -54,6 +54,7 @@ setup(
     entry_points={
         'maidenhair.plugins': [
             'parsers.PlainParser = maidenhair.parsers.plain:PlainParser',
+            'parsers.CSVParser = maidenhair.parsers.plain:CSVParser',
             'loaders.PlainLoader = maidenhair.loaders.plain:PlainLoader',
         ],
     },
