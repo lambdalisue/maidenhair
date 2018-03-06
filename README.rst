@@ -8,15 +8,15 @@ maidenhair
     :target: https://coveralls.io/r/lambdalisue/maidenhair/
     :alt: Coverage
 
-.. image:: https://pypip.in/d/maidenhair/badge.png
+.. image:: https://img.shields.io/pypi/dm/maidenhair.svg
     :target: https://pypi.python.org/pypi/maidenhair/
     :alt: Downloads
 
-.. image:: https://pypip.in/v/maidenhair/badge.png
+.. image:: https://img.shields.io/pypi/v/maidenhair.svg
     :target: https://pypi.python.org/pypi/maidenhair/
     :alt: Latest version
 
-.. image:: https://pypip.in/wheel/maidenhair/badge.png
+.. image:: https://img.shields.io/pypi/wheel/maidenhair.svg
     :target: https://pypi.python.org/pypi/maidenhair/
     :alt: Wheel Status
 
@@ -24,7 +24,7 @@ maidenhair
     :target: https://pypi.python.org/pypi/maidenhair/
     :alt: Egg Status
 
-.. image:: https://pypip.in/license/maidenhair/badge.png
+.. image:: https://img.shields.io/pypi/l/maidenhair.svg
     :target: https://pypi.python.org/pypi/maidenhair/
     :alt: License
 
